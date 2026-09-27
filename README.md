@@ -328,17 +328,6 @@ Pass/Fail Determination & Detailed Markdown Report
 - **Retrieval Accuracy**: **`1.00 (100%)`** precision across indexed policy chunks.
 - **Guardrail Precision**: **`1.00 (100%)`** interception of prompt injections and schema exfiltration.
 - **Hallucination Prevention**: Explicit refusal on out-of-domain queries (e.g. laptop hardware, stock dividends).
-
----
-
-## Application Screenshots (Placeholders)
-
-![Application Screenshot](screenshots/dashboard.png)
-*Figure 1: Executive Analytics Dashboard with Qlik Sense Verified KPIs and Filter Controls*
-
-![AI Knowledge Assistant](screenshots/rag_assistant.png)
-*Figure 2: Grounded RAG Assistant Interface with Policy Citations and Guardrail Feedback*
-
 ---
 
 ## Defect Management Summary
