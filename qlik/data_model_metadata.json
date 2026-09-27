@@ -1,0 +1,56 @@
+{
+  "appName": "Enterprise Data & GenAI Quality Validation Dashboard",
+  "version": "1.0",
+  "engine": "QIX Engine",
+  "tables": [
+    {
+      "name": "Dim_Customers",
+      "key": "Customer ID",
+      "fields": ["Customer ID", "Customer Name", "Email", "Customer Tier", "Region", "Account Created Date", "Customer Status"]
+    },
+    {
+      "name": "Fact_ServiceRequests",
+      "key": "Request ID",
+      "foreignKeys": [{"field": "Customer ID", "referenceTable": "Dim_Customers"}],
+      "fields": ["Request ID", "Customer ID", "Request Category", "Priority", "Request Created Date", "Request Status", "Resolution Hours", "SLA Status", "CSAT Score"]
+    },
+    {
+      "name": "Fact_Transactions",
+      "key": "Transaction ID",
+      "foreignKeys": [{"field": "Customer ID", "referenceTable": "Dim_Customers"}],
+      "fields": ["Transaction ID", "Customer ID", "Transaction Date", "Gross Transaction Amount", "Net Transaction Amount", "Payment Method", "Channel", "Transaction Status"]
+    }
+  ],
+  "kpis": [
+    {
+      "id": "KPI-01",
+      "label": "Total Gross Transaction Volume",
+      "expression": "Sum([Gross Transaction Amount])",
+      "expectedValue": 5049.74
+    },
+    {
+      "id": "KPI-02",
+      "label": "Completed Transactions Count",
+      "expression": "Count({<[Transaction Status]={'Completed'}>} [Transaction ID])",
+      "expectedValue": 14
+    },
+    {
+      "id": "KPI-03",
+      "label": "Total Service Requests",
+      "expression": "Count([Request ID])",
+      "expectedValue": 15
+    },
+    {
+      "id": "KPI-04",
+      "label": "Open Service Requests",
+      "expression": "Sum([Is Open Request])",
+      "expectedValue": 6
+    },
+    {
+      "id": "KPI-05",
+      "label": "Average Customer CSAT",
+      "expression": "Avg([CSAT Score])",
+      "expectedValue": 4.11
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "enterprise-ui-automation",
+  "version": "1.0.0",
+  "description": "Selenium TypeScript UI Automation Suite for Enterprise Analytics & RAG Portal",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -r ts-node/register 'src/tests/**/*.spec.ts' --timeout 30000"
+  },
+  "dependencies": {
+    "chromedriver": "^133.0.0",
+    "selenium-webdriver": "^4.19.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.11",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.11.24",
+    "@types/selenium-webdriver": "^4.1.21",
+    "chai": "^4.4.1",
+    "mocha": "^10.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}

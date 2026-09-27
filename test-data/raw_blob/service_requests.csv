@@ -1,0 +1,16 @@
+request_id,customer_id,category,priority,created_date,resolved_date,status,satisfaction_score
+SR-2001,CUST-1001,Billing,High,2025-08-01 09:15:00,2025-08-01 14:30:00,Closed,5
+SR-2002,CUST-1002,Technical,Urgent,2025-08-02 10:00:00,2025-08-03 11:20:00,Closed,4
+SR-2003,CUST-1003,Account,Medium,2025-08-05 11:30:00,,Open,
+SR-2004,CUST-1004,Billing,Low,2025-08-06 14:00:00,2025-08-07 16:45:00,Closed,3
+SR-2005,CUST-1005,Technical,High,2025-08-08 08:45:00,,In_Progress,
+SR-2006,CUST-1001,General,Low,2025-08-10 13:10:00,2025-08-10 15:00:00,Closed,5
+SR-2007,CUST-1007,Billing,Medium,2025-08-12 16:20:00,,Open,
+SR-2008,CUST-1009,Technical,Urgent,2025-08-14 10:05:00,2025-08-15 09:30:00,Closed,4
+SR-2009,CUST-1010,Account,Low,2025-08-16 11:40:00,2025-08-16 17:15:00,Closed,5
+SR-2010,CUST-1008,Billing,High,2025-08-18 15:25:00,,In_Progress,
+SR-2011,CUST-1005,Technical,Medium,2025-08-20 09:50:00,2025-08-21 14:10:00,Closed,4
+SR-2012,CUST-1011,General,Low,2025-08-22 13:00:00,2025-08-22 16:00:00,Closed,5
+SR-2013,CUST-1002,Billing,High,2025-08-25 10:30:00,,Open,
+SR-2014,CUST-1003,Technical,Urgent,2025-08-26 14:15:00,2025-08-27 12:00:00,Closed,2
+SR-2015,CUST-1006,Account,Medium,2025-08-28 09:00:00,,Open,

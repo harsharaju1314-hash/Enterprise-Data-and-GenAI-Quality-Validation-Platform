@@ -1,0 +1,11 @@
+{
+  "name": "LS_AzureBlobStorage",
+  "type": "Microsoft.DataFactory/factories/linkedservices",
+  "properties": {
+    "description": "Linked service connecting to enterprise Azure Blob Storage account holding raw CSV files.",
+    "type": "AzureBlobStorage",
+    "typeProperties": {
+      "connectionString": "DefaultEndpointsProtocol=https;AccountName=enterpriseblobstorage;AccountKey=@{activity('GetSecret').output.value};EndpointSuffix=core.windows.net"
+    }
+  }
+}

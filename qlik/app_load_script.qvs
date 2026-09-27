@@ -1,0 +1,74 @@
+/// ====================================================================
+/// Qlik Sense Application Load Script: Enterprise Analytics Dashboard
+/// App Name: Enterprise Data & GenAI Quality Validation Dashboard
+/// Data Connection: Azure_SQL_EnterpriseAnalyticsDB
+/// ====================================================================
+
+SET ThousandSep=',';
+SET DecimalSep='.';
+SET MoneyThousandSep=',';
+SET MoneyDecimalSep='.';
+SET MoneyFormat='$#,##0.00;($#,##0.00)';
+SET TimeFormat='h:mm:ss TT';
+SET DateFormat='YYYY-MM-DD';
+SET TimestampFormat='YYYY-MM-DD h:mm:ss[.fff] TT';
+
+/// [1. Dimension: Customers]
+LIB CONNECT TO 'Azure_SQL_EnterpriseAnalyticsDB';
+
+Dim_Customers:
+LOAD 
+    customer_id AS [Customer ID],
+    first_name AS [First Name],
+    last_name AS [Last Name],
+    full_name AS [Customer Name],
+    email AS [Email],
+    tier AS [Customer Tier],
+    region AS [Region],
+    Date(account_created_date) AS [Account Created Date],
+    status AS [Customer Status]
+FROM [dbo].[dim_customers];
+
+/// [2. Fact: Service Requests]
+Fact_ServiceRequests:
+LOAD 
+    request_id AS [Request ID],
+    customer_id AS [Customer ID],
+    category AS [Request Category],
+    priority AS [Priority],
+    Timestamp(created_date) AS [Request Created Timestamp],
+    Date(Floor(Timestamp(created_date))) AS [Request Created Date],
+    Timestamp(resolved_date) AS [Request Resolved Timestamp],
+    status AS [Request Status],
+    resolution_time_hours AS [Resolution Hours],
+    sla_compliance AS [SLA Status],
+    satisfaction_score AS [CSAT Score],
+    If(status = 'Closed', 1, 0) AS [Is Closed Request],
+    If(status = 'Open' or status = 'In_Progress', 1, 0) AS [Is Open Request]
+FROM [dbo].[fact_service_requests];
+
+/// [3. Fact: Transactions]
+Fact_Transactions:
+LOAD 
+    transaction_id AS [Transaction ID],
+    customer_id AS [Customer ID],
+    Timestamp(transaction_date) AS [Transaction Timestamp],
+    Date(Floor(Timestamp(transaction_date))) AS [Transaction Date],
+    amount AS [Gross Transaction Amount],
+    net_amount AS [Net Transaction Amount],
+    currency AS [Currency],
+    payment_method AS [Payment Method],
+    channel AS [Channel],
+    status AS [Transaction Status],
+    If(status = 'Completed', 1, 0) AS [Is Completed Txn],
+    If(status = 'Failed', 1, 0) AS [Is Failed Txn],
+    If(status = 'Refunded', 1, 0) AS [Is Refunded Txn]
+FROM [dbo].[fact_transactions];
+
+/// [4. Master Items & Dimensions]
+// Master Measures:
+// - Total Gross Spend: Sum([Gross Transaction Amount])
+// - Total Completed Transactions: Count({<[Transaction Status]={'Completed'}>} [Transaction ID])
+// - Total Open Requests: Sum([Is Open Request])
+// - Average Resolution Hours: Avg({<[Request Status]={'Closed'}>} [Resolution Hours])
+// - CSAT Average: Avg([CSAT Score])

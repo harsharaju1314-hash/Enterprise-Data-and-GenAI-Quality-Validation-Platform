@@ -1,0 +1,32 @@
+{
+  "name": "DS_Blob_Customers",
+  "type": "Microsoft.DataFactory/factories/datasets",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "LS_AzureBlobStorage",
+      "type": "LinkedServiceReference"
+    },
+    "type": "DelimitedText",
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobStorageLocation",
+        "container": "raw-data",
+        "fileName": "customers.csv"
+      },
+      "columnDelimiter": ",",
+      "escapeChar": "\\",
+      "firstRowAsHeader": true,
+      "quoteChar": "\""
+    },
+    "schema": [
+      { "name": "customer_id", "type": "String" },
+      { "name": "first_name", "type": "String" },
+      { "name": "last_name", "type": "String" },
+      { "name": "email", "type": "String" },
+      { "name": "tier", "type": "String" },
+      { "name": "region", "type": "String" },
+      { "name": "account_created_date", "type": "String" },
+      { "name": "status", "type": "String" }
+    ]
+  }
+}

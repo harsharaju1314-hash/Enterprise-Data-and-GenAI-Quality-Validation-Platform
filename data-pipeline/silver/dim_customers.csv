@@ -1,0 +1,13 @@
+customer_id,first_name,last_name,email,tier,region,account_created_date,status,full_name
+CUST-1001,Alice,Smith,alice.smith@example.com,Platinum,East,2025-01-15,Active,Alice Smith
+CUST-1002,Bob,Jones,bob.jones@example.com,Gold,West,2025-02-10,Active,Bob Jones
+CUST-1003,Carol,Davis,carol.davis@example.com,Silver,North,2025-03-01,Active,Carol Davis
+CUST-1004,David,Wilson,david.wilson@example.com,Bronze,South,2025-03-12,Active,David Wilson
+CUST-1005,Emma,Taylor,emma.taylor@example.com,Platinum,East,2025-04-05,Active,Emma Taylor
+CUST-1006,Frank,Thomas,frank.thomas@example.com,Gold,Central,2025-04-18,Inactive,Frank Thomas
+CUST-1007,Grace,Martinez,grace.martinez@example.com,Silver,West,2025-05-02,Active,Grace Martinez
+CUST-1008,Henry,Anderson,henry.anderson@example.com,Bronze,North,2025-05-20,Active,Henry Anderson
+CUST-1009,Ivy,Jackson,ivy.jackson@example.com,Gold,East,2025-06-11,Active,Ivy Jackson
+CUST-1010,Jack,White,jack.white@example.com,Platinum,South,2025-06-25,Active,Jack White
+CUST-1011,Karen,Harris,karen.harris@example.com,Silver,Central,2025-07-04,Active,Karen Harris
+CUST-1012,Liam,Clark,liam.clark@example.com,Bronze,West,2025-07-19,Inactive,Liam Clark

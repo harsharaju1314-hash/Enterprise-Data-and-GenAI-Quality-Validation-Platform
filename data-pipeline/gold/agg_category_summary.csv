@@ -1,0 +1,5 @@
+category,total_requests,closed_requests,open_requests,avg_resolution_hours,avg_csat
+Account,3,1,2,5.58,5.0
+Billing,5,2,3,16.0,4.0
+General,2,2,0,2.42,5.0
+Technical,5,4,1,24.71,3.5

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enterprise Analytics Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">Enterprise Platform</div>
+      <ul class="sidebar-nav">
+        <li><a href="dashboard.html" class="active" id="nav-dashboard">Analytics Dashboard</a></li>
+        <li><a href="rag_assistant.html" id="nav-rag">AI Knowledge Assistant</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div>Logged in as: <strong id="user-display">User</strong></div>
+        <div style="margin-top: 0.25rem;">Role: <span id="role-display" class="badge badge-platinum">Admin</span></div>
+        <button id="btn-logout" class="btn btn-secondary btn-block" style="margin-top: 0.8rem; padding: 0.4rem;">Sign Out</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="header-bar">
+        <div>
+          <h2>Executive Analytics & Operations Dashboard</h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Qlik Sense Verified Metrics & Relational Data Stream</p>
+        </div>
+        <div class="header-actions">
+          <button id="btn-refresh" class="btn btn-secondary">Refresh Data</button>
+          <button id="btn-export" class="btn">Export CSV</button>
+        </div>
+      </div>
+
+      <!-- KPI Grid -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-title">Gross Volume</div>
+          <div class="kpi-value" id="kpi-gross-volume">$0.00</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Total Transactions</div>
+          <div class="kpi-value" id="kpi-total-txns">0</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Open Service Requests</div>
+          <div class="kpi-value" id="kpi-open-requests">0</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Closed Requests</div>
+          <div class="kpi-value" id="kpi-closed-requests">0</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Average CSAT</div>
+          <div class="kpi-value" id="kpi-avg-csat">0.0</div>
+        </div>
+      </div>
+
+      <!-- Filter Controls -->
+      <div class="filter-bar">
+        <div class="filter-item">
+          <label for="filter-tier"><strong>Tier:</strong></label>
+          <select id="filter-tier">
+            <option value="">All Tiers</option>
+            <option value="Platinum">Platinum</option>
+            <option value="Gold">Gold</option>
+            <option value="Silver">Silver</option>
+            <option value="Bronze">Bronze</option>
+          </select>
+        </div>
+
+        <div class="filter-item">
+          <label for="filter-region"><strong>Region:</strong></label>
+          <select id="filter-region">
+            <option value="">All Regions</option>
+            <option value="East">East</option>
+            <option value="West">West</option>
+            <option value="North">North</option>
+            <option value="South">South</option>
+            <option value="Central">Central</option>
+          </select>
+        </div>
+
+        <div class="filter-item">
+          <label for="search-input"><strong>Search:</strong></label>
+          <input type="text" id="search-input" placeholder="Search by name, ID or email...">
+        </div>
+
+        <button id="btn-apply-filters" class="btn">Apply Filter</button>
+        <button id="btn-reset-filters" class="btn btn-secondary">Reset</button>
+      </div>
+
+      <!-- Customer Records Table -->
+      <div class="data-card">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h3>Customer Data & Analytics Directory (<span id="record-count">0</span> records)</h3>
+          <span id="drilldown-badge" class="badge badge-gold" style="display: none;">Drill-down Active</span>
+        </div>
+        
+        <table class="data-table" id="customers-table">
+          <thead>
+            <tr>
+              <th>Customer ID</th>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Tier</th>
+              <th>Region</th>
+              <th>Account Date</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="customers-tbody">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+        
+        <div id="empty-state" class="empty-state" style="display: none;">
+          <h4>No matching records found</h4>
+          <p>Try clearing filters or changing search query parameters.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

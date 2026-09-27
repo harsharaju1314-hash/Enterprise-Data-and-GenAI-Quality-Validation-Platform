@@ -1,0 +1,11 @@
+{
+  "name": "LS_AzureSQLDatabase",
+  "type": "Microsoft.DataFactory/factories/linkedservices",
+  "properties": {
+    "description": "Linked service connecting to Azure SQL Database hosting transformed analytics tables.",
+    "type": "AzureSqlDatabase",
+    "typeProperties": {
+      "connectionString": "Server=tcp:enterprise-sql-server.database.windows.net,1433;Initial Catalog=EnterpriseAnalyticsDB;Persist Security Info=False;User ID=sqladmin;Password=@{activity('GetSQLSecret').output.value};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+    }
+  }
+}

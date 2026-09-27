@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enterprise Portal - Login</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <h2>Enterprise Data & GenAI Platform</h2>
+      <p>Enter your credentials to access the analytics workspace.</p>
+      
+      <div id="login-alert" class="alert alert-danger" style="display: none;"></div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" placeholder="e.g. admin, analyst, agent" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="••••••••" required>
+        </div>
+        <button type="submit" id="btn-login" class="btn btn-block">Sign In</button>
+      </form>
+      
+      <div style="margin-top: 1.5rem; font-size: 0.8rem; color: #5e6c84; background: #fafbfc; padding: 0.8rem; border-radius: 4px; border: 1px dashed #dfe1e6;">
+        <strong>Demo Accounts:</strong><br>
+        - Admin: <code>admin</code> / <code>Admin@123</code><br>
+        - Analyst: <code>analyst</code> / <code>Analyst@123</code><br>
+        - Agent: <code>agent</code> / <code>Agent@123</code>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const alertBox = document.getElementById('login-alert');
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          localStorage.setItem('auth_token', data.token);
+          localStorage.setItem('username', data.username);
+          localStorage.setItem('role', data.role);
+          window.location.href = 'dashboard.html';
+        } else {
+          alertBox.textContent = data.message || 'Invalid username or password';
+          alertBox.style.display = 'block';
+        }
+      } catch (err) {
+        alertBox.textContent = 'Server connection error. Please try again.';
+        alertBox.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

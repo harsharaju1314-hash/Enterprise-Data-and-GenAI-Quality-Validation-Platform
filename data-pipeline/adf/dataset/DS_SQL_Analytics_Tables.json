@@ -1,0 +1,16 @@
+{
+  "name": "DS_SQL_Analytics_Tables",
+  "type": "Microsoft.DataFactory/factories/datasets",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "LS_AzureSQLDatabase",
+      "type": "LinkedServiceReference"
+    },
+    "type": "AzureSqlTable",
+    "schema": [],
+    "typeProperties": {
+      "schema": "dbo",
+      "table": "fact_daily_metrics"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+customer_id,first_name,last_name,email,tier,region,account_created_date,status,full_name,total_spend,completed_transactions_count,total_transactions_count,total_service_requests,open_service_requests,closed_service_requests,avg_satisfaction_score
+CUST-1001,Alice,Smith,alice.smith@example.com,Platinum,East,2025-01-15,Active,Alice Smith,369.99,2,2,2,0,2,5.0
+CUST-1002,Bob,Jones,bob.jones@example.com,Gold,West,2025-02-10,Active,Bob Jones,430.5,2,2,2,1,1,4.0
+CUST-1003,Carol,Davis,carol.davis@example.com,Silver,North,2025-03-01,Active,Carol Davis,49.0,1,1,2,1,1,2.0
+CUST-1004,David,Wilson,david.wilson@example.com,Bronze,South,2025-03-12,Active,David Wilson,899.0,1,1,1,0,1,3.0
+CUST-1005,Emma,Taylor,emma.taylor@example.com,Platinum,East,2025-04-05,Active,Emma Taylor,690.0,2,2,2,1,1,4.0
+CUST-1006,Frank,Thomas,frank.thomas@example.com,Gold,Central,2025-04-18,Inactive,Frank Thomas,0.0,0,1,1,1,0,
+CUST-1007,Grace,Martinez,grace.martinez@example.com,Silver,West,2025-05-02,Active,Grace Martinez,320.0,1,1,1,1,0,
+CUST-1008,Henry,Anderson,henry.anderson@example.com,Bronze,North,2025-05-20,Active,Henry Anderson,60.0,1,1,1,1,0,
+CUST-1009,Ivy,Jackson,ivy.jackson@example.com,Gold,East,2025-06-11,Active,Ivy Jackson,660.0,2,2,1,0,1,4.0
+CUST-1010,Jack,White,jack.white@example.com,Platinum,South,2025-06-25,Active,Jack White,1200.0,1,1,1,0,1,5.0
+CUST-1011,Karen,Harris,karen.harris@example.com,Silver,Central,2025-07-04,Active,Karen Harris,180.0,1,1,1,0,1,5.0
+CUST-1012,Liam,Clark,liam.clark@example.com,Bronze,West,2025-07-19,Inactive,Liam Clark,0.0,0,1,0,0,0,

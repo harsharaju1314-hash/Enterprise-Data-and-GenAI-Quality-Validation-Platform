@@ -1,0 +1,111 @@
+{
+  "name": "PL_Enterprise_Data_Ingest_Transform",
+  "properties": {
+    "description": "Enterprise ETL orchestration pipeline: Ingests raw CSVs from Azure Blob Storage, triggers Databricks transformation notebooks for cleaning and gold aggregations, and loads verified data into Azure SQL analytics tables.",
+    "activities": [
+      {
+        "name": "Check_Blob_Files_Exist",
+        "type": "Validation",
+        "dependsOn": [],
+        "userProperties": [],
+        "typeProperties": {
+          "dataset": {
+            "referenceName": "DS_Blob_Customers",
+            "type": "DatasetReference"
+          },
+          "timeout": "0.00:10:00",
+          "sleep": 10,
+          "minimumSize": 100
+        }
+      },
+      {
+        "name": "Run_Databricks_Bronze_To_Silver",
+        "type": "DatabricksNotebook",
+        "dependsOn": [
+          {
+            "activity": "Check_Blob_Files_Exist",
+            "dependencyConditions": ["Succeeded"]
+          }
+        ],
+        "userProperties": [],
+        "typeProperties": {
+          "notebookPath": "/Shared/EnterpriseAnalytics/01_bronze_to_silver_cleaning",
+          "baseParameters": {
+            "source_storage_account": "enterpriseblobstorage",
+            "source_container": "raw-data",
+            "target_container": "silver-data",
+            "batch_date": "@pipeline().TriggerTime"
+          }
+        },
+        "linkedServiceName": {
+          "referenceName": "LS_AzureDatabricks",
+          "type": "LinkedServiceReference"
+        }
+      },
+      {
+        "name": "Run_Databricks_Silver_To_Gold",
+        "type": "DatabricksNotebook",
+        "dependsOn": [
+          {
+            "activity": "Run_Databricks_Bronze_To_Silver",
+            "dependencyConditions": ["Succeeded"]
+          }
+        ],
+        "userProperties": [],
+        "typeProperties": {
+          "notebookPath": "/Shared/EnterpriseAnalytics/02_silver_to_gold_aggregates",
+          "baseParameters": {
+            "silver_container": "silver-data",
+            "gold_container": "gold-data"
+          }
+        },
+        "linkedServiceName": {
+          "referenceName": "LS_AzureDatabricks",
+          "type": "LinkedServiceReference"
+        }
+      },
+      {
+        "name": "Load_Gold_To_Azure_SQL",
+        "type": "Copy",
+        "dependsOn": [
+          {
+            "activity": "Run_Databricks_Silver_To_Gold",
+            "dependencyConditions": ["Succeeded"]
+          }
+        ],
+        "userProperties": [],
+        "typeProperties": {
+          "source": {
+            "type": "DelimitedTextSource",
+            "storeSettings": {
+              "type": "AzureBlobStorageReadSettings",
+              "recursive": true
+            }
+          },
+          "sink": {
+            "type": "AzureSqlSink",
+            "writeBehavior": "upsert",
+            "upsertSettings": {
+              "useTempDB": true,
+              "keys": ["customer_id"]
+            },
+            "sqlWriterStoredProcedureName": "dbo.sp_MergeCustomerMetrics"
+          }
+        },
+        "inputs": [
+          {
+            "referenceName": "DS_Blob_Transactions",
+            "type": "DatasetReference"
+          }
+        ],
+        "outputs": [
+          {
+            "referenceName": "DS_SQL_Analytics_Tables",
+            "type": "DatasetReference"
+          }
+        ]
+      }
+    ],
+    "annotations": ["QualityEngineering", "ETL", "AzureDataFactory", "EnterpriseData"]
+  }
+}

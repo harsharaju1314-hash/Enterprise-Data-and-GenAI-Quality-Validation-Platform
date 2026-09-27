@@ -1,0 +1,17 @@
+transaction_id,customer_id,transaction_date,amount,currency,payment_method,channel,status
+TXN-3001,CUST-1001,2025-08-01 10:15:20,249.99,USD,Credit_Card,Web,Completed
+TXN-3002,CUST-1002,2025-08-02 11:45:00,120.50,USD,Debit_Card,Mobile,Completed
+TXN-3003,CUST-1003,2025-08-04 14:20:10,49.00,USD,PayPal,Web,Completed
+TXN-3004,CUST-1004,2025-08-05 16:05:00,899.00,USD,Credit_Card,Store,Completed
+TXN-3005,CUST-1005,2025-08-07 09:30:15,150.00,USD,Credit_Card,Web,Completed
+TXN-3006,CUST-1006,2025-08-09 13:10:45,75.25,USD,Debit_Card,Mobile,Failed
+TXN-3007,CUST-1007,2025-08-11 15:40:00,320.00,USD,Credit_Card,Web,Completed
+TXN-3008,CUST-1008,2025-08-13 17:00:30,60.00,USD,PayPal,Mobile,Completed
+TXN-3009,CUST-1009,2025-08-15 11:15:00,450.00,USD,Credit_Card,Web,Completed
+TXN-3010,CUST-1010,2025-08-17 12:20:10,1200.00,USD,Bank_Transfer,Web,Completed
+TXN-3011,CUST-1011,2025-08-19 14:50:00,180.00,USD,Debit_Card,Mobile,Completed
+TXN-3012,CUST-1012,2025-08-21 16:30:00,95.00,USD,Credit_Card,Web,Refunded
+TXN-3013,CUST-1001,2025-08-23 10:00:00,120.00,USD,Credit_Card,Web,Completed
+TXN-3014,CUST-1002,2025-08-25 11:20:00,310.00,USD,Debit_Card,Mobile,Completed
+TXN-3015,CUST-1005,2025-08-27 15:10:00,540.00,USD,Credit_Card,Web,Completed
+TXN-3016,CUST-1009,2025-08-29 09:45:00,210.00,USD,Credit_Card,Mobile,Completed
